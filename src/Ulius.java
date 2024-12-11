@@ -12,14 +12,24 @@ public class Ulius extends Human{
         switch (cond){
             case HUNGRY:
                 setCondition(Condition.NEED_TO_SMOKE);
-                return eat(5);
+                try {
+                    return eat(5);
+                }catch (NoDishException e){
+                    System.out.print(getName()+ " хочет поесть, но чистых тарелок нет, ");
+                    return 0;
+                }
+
 
             case NEED_TO_SMOKE:
                 return smoke(3);
+            case ANGRYHP:
+                setCondition(Condition.NEED_TO_SMOKE);
+                return 0;
             case HAPPYHP:
                 System.out.print(getName()+ " довольный, ");
                 delCondition(Condition.HAPPYHP);
                 setCondition(Condition.HAPPYLP);
+                return 0;
             default:
                 return takeRest();
         }

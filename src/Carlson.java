@@ -11,7 +11,13 @@ public class Carlson extends Human{
         Condition cond = getMaxPriorityCond(getCondition());
         switch (cond){
             case HUNGRY:
-                return eat(5);
+                try {
+                    return eat(5);
+                }catch (NoDishException e){
+                    System.out.print(getName()+ " хочет поесть, но чистых тарелок нет, ");
+                    return 0;
+                }
+
             default:
                 return takeRest();
         }

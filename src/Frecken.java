@@ -10,8 +10,18 @@ public class Frecken extends Human{
         Condition cond = getMaxPriorityCond(getCondition());
         switch (cond){
             case HUNGRY:
-                return eat(5);
+                try {
+                    return eat(5);
+                }catch (NoDishException e){
+                    System.out.print(getName()+ " хочет поесть, но чистых тарелок нет, ");
+                    delCondition(Condition.ANGRYHP);
+                    setCondition(Condition.NEED_TO_WASH_DISHESHP);
+                    return 1;
+                }
+
             case NEED_TO_WASH_DISHES:
+                return dishwahing(3);
+            case NEED_TO_WASH_DISHESHP:
                 return dishwahing(3);
             case NEED_TO_TOWEL:
                 try{

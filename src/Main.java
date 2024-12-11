@@ -18,13 +18,13 @@ public class Main {
                 new Towel(Dirtyness.DIRTY),
                 new Dish(Dirtyness.DIRTY),
                 new Dish(Dirtyness.DIRTY),
-                new Dish(Dirtyness.CLEAR),};
+                new Dish(Dirtyness.DIRTY),};
         ItemHolder itemHolder = new ItemHolder(items);
 
         Timeline timeline = new Timeline(new Human[] {carlson, frecken, ulius},itemHolder);
         timeline.startSimulation(false);
         //itemHolder.printItems();
-        //System.out.println(ulius.getMaxPriorityCond(ulius.getCondition()));
+        System.out.println(ulius.getMaxPriorityCond(ulius.getCondition()));
 
     }
 }

@@ -6,6 +6,8 @@ public interface HumanActivities {
     boolean getPrintDur();
 
 
+
+
     default int sing(int minutes){
         System.out.print( getName()+ " поет"+(getPrintDur()? " "+minutes+" мин., ": ", "));
         delCondition(Condition.HAPPYHP);
@@ -44,16 +46,27 @@ public interface HumanActivities {
         return minutes;
     }
 
-    default int eat(int minutes){
-        System.out.print(getName() + " ест"+(getPrintDur()? " "+minutes+" мин., ": ", "));
-        delCondition(Condition.HUNGRY);
-        setCondition(Condition.HAPPYHP);
-        return minutes;
+    default int eat(int minutes)throws NoDishException{
+        for (Item it: getItemHolder().getItems()) {
+            if(it.getClass()==Dish.class){
+                if(((Dish) it).getDirtyness()==Dirtyness.CLEAR){
+                    System.out.print(getName() + " ест"+(getPrintDur()? " "+minutes+" мин., ": ", "));
+                    delCondition(Condition.HUNGRY);
+                    setCondition(Condition.HAPPYHP);
+                    ((Dish) it).makeDirty();
+                    return minutes;
+                }
+            }
+        }
+        setCondition(Condition.ANGRYHP);
+        throw new NoDishException("нет чистых тарелок");
     }
 
     default int smoke(int minutes){
         System.out.print(getName() + " курит"+(getPrintDur()? " "+minutes+" мин., ": ", "));
         delCondition(Condition.NEED_TO_SMOKE);
+        delCondition(Condition.ANGRYHP);
+        delCondition(Condition.ANGRYLP);
         setCondition(Condition.HAPPYHP);
         return minutes;
     }
@@ -74,6 +87,7 @@ public interface HumanActivities {
                 if(((Dish) item).getDirtyness()==Dirtyness.DIRTY){
                     ((Dish) item).makeClear();
                     setCondition(Condition.NEED_TO_TOWEL);
+                    delCondition(Condition.NEED_TO_WASH_DISHESHP);
                     System.out.print(getName() + " моет тарелку"+(getPrintDur()? " "+minutes+" мин., ": ", "));
                     return minutes;
                 }
@@ -87,6 +101,7 @@ public interface HumanActivities {
             if (item.getClass()==Towel.class){
                 if(((Towel) item).getDirtyness()==Dirtyness.CLEAR){
                     delCondition(Condition.NEED_TO_TOWEL);
+                    //((Towel) item).makeDirty();                       //возможно лишнее
                     System.out.print(getName() + " вытирает руки ");
                     return 0;
                 }

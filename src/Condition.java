@@ -1,8 +1,9 @@
 public enum Condition{
     HUNGRY(30),
-    NEED_TO_SMOKE(20),
+    NEED_TO_SMOKE(27),
     NEED_TO_WASH_DISHES(10),
-    NEED_TO_TOWEL(5),
+    NEED_TO_WASH_DISHESHP(50),
+    NEED_TO_TOWEL(35),
     NEED_A_REST(0),
     ANGRYHP(26),
     EVEN_MORE_ANGRYHP(27),
