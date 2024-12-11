@@ -6,18 +6,19 @@ public class Ulius extends Human{
     }
 
     @Override
-    public void doSmth() {
+    public int doSmth() {
         //System.out.println(getName()+ " что то делает id="+getId());
         Condition cond = getMaxPriorityCond(getCondition());
+        //System.out.println(getName()+" "+cond);
         switch (cond){
             case HUNGRY:
-                eat(4);
-                delCondition(Condition.HUNGRY);
-                break;
-            default:
-                takeRest();
-                break;
+                setCondition(Condition.NEED_TO_SMOKE);
+                return eat(15);
 
+            case NEED_TO_SMOKE:
+                return smoke(3);
+            default:
+                return takeRest();
         }
     }
 }

@@ -2,8 +2,14 @@ public enum Condition{
     HUNGRY(30),
     NEED_TO_SMOKE(20),
     NEED_TO_WASH_DISHES(10),
-    NEED_TO_TOWEL(40),
-    NEED_A_REST(0);
+    NEED_TO_TOWEL(5),
+    NEED_A_REST(0),
+    ANGRYHP(26),
+    EVEN_MORE_ANGRYHP(27),
+    HAPPYHP(25),
+    ANGRYLP(0),
+    HAPPYLP(0),
+    EVEN_MORE_ANGRYLP(0);
 
 
 
@@ -13,6 +19,8 @@ public enum Condition{
     }
     Condition() {
     }
+
+
 
     public int getPriority() {
         return priority;

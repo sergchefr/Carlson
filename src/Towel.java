@@ -1,8 +1,7 @@
-public class Dish extends Item implements Clearable{
-
+public class Towel extends Item implements Clearable{
     private Dirtyness dirtyness;
 
-    public Dish(Dirtyness dirtyness){
+    public Towel(Dirtyness dirtyness){
         this.dirtyness = dirtyness;
     }
 
@@ -13,15 +12,14 @@ public class Dish extends Item implements Clearable{
         this.dirtyness = dirtyness.DIRTY;
     }
 
-    public Dirtyness getDirtyness() {
-        return dirtyness;
-    }
-
     @Override
     public String toString() {
-        return "Dish{" +
+        return "Towel{" +
                 "dirtyness=" + dirtyness +
                 '}';
     }
-}
 
+    public Dirtyness getDirtyness() {
+        return dirtyness;
+    }
+}

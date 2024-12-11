@@ -7,17 +7,13 @@ public class Carlson extends Human{
     }
 
     @Override
-    public void doSmth() {
+    public int doSmth() {
         Condition cond = getMaxPriorityCond(getCondition());
         switch (cond){
             case HUNGRY:
-                eat(5);
-                delCondition(Condition.HUNGRY);
-                break;
+                return eat(5);
             default:
-                takeRest();
-                break;
-
+                return takeRest();
         }
 
 
