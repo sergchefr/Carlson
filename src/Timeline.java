@@ -14,9 +14,12 @@ public class Timeline {
     }
 
 
-    public void startSimulation(){                          //основной цикл
+    public void startSimulation(boolean printDur){                          //основной цикл
+        for (Human human : mh) {
+            human.setPrintDur(printDur);
+        }
 
-        int a = 2;//ходы бездействия
+        int a = 3;//ходы бездействия
         DurationRecord[] rec = new DurationRecord[a];//создание рекордов
         for (int i = 0; i < a; i++) {
             rec[i] = new DurationRecord(new int[mh.length]);
@@ -32,16 +35,18 @@ public class Timeline {
                     duration[i] = mh[i].doSmth();
                 }
             }
+
+            if (recnum==a) recnum=0;
+            rec[recnum] = new DurationRecord(duration.clone());
+            recnum += 1;
+
+            if(printDur){printDurations();}
+
             for (int i = 0; i < duration.length; i++) {//следующий ход
                 if (duration[i] > 0) {
                     duration[i] -= 1;
                 }
             }
-            if (recnum==a) recnum=0;
-            rec[recnum] = new DurationRecord(duration.clone());
-            recnum += 1;
-
-
         }
     }
 

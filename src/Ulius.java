@@ -1,8 +1,7 @@
 public class Ulius extends Human{
-
-
     public Ulius(String name) {
         super(name);
+
     }
 
     @Override
@@ -13,10 +12,14 @@ public class Ulius extends Human{
         switch (cond){
             case HUNGRY:
                 setCondition(Condition.NEED_TO_SMOKE);
-                return eat(15);
+                return eat(5);
 
             case NEED_TO_SMOKE:
                 return smoke(3);
+            case HAPPYHP:
+                System.out.print(getName()+ " довольный, ");
+                delCondition(Condition.HAPPYHP);
+                setCondition(Condition.HAPPYLP);
             default:
                 return takeRest();
         }
